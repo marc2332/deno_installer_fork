@@ -89,12 +89,15 @@ Deno.test(`Installer created ${Deno.build.os}`, async () => {
       {
         let exists = true;
         try {
-          for await (const file of await Deno.readDir(`${dist}/`)){
+          for await (const file of await Deno.readDir(`${dist}/dmg`)){
+            console.log(file)
+          }
+          for await (const file of await Deno.readDir(`${dist}/macos`)){
             console.log(file)
           }
           // Check MacOS installer
           await Deno.readFile(
-            `${dist}/darwin/TestApp_1.0.0_amd64.dmg`,
+            `${dist}/dmg/TestApp_1.0.0_amd64.dmg`,
           );
         } catch {
           exists = false;
