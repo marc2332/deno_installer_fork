@@ -70,6 +70,12 @@ Deno.test(`Installer created ${Deno.build.os}`, async () => {
       {
         let exists = true;
         try {
+          for await (const file of await Deno.readDir(`${dist}/deb`)){
+            console.log(file)
+          }
+          for await (const file of await Deno.readDir(`${dist}/appimage`)){
+            console.log(file)
+          }
           // Check Debian installer
           await Deno.readFile(
             `${dist}/deb/TestApp_1.0.0_amd64.deb`,

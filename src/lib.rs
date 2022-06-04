@@ -1,5 +1,3 @@
-use std::path::PathBuf;
-
 use deno_bindgen::deno_bindgen;
 use tauri_bundler::{
     bundle_project, BundleBinary, BundleSettings, PackageSettings, SettingsBuilder,
@@ -58,6 +56,7 @@ fn adapt_bundle(custom_bundle: BundleSettingsInstaller) -> BundleSettings {
 
     #[cfg(windows)]
     if let Some(icon) = &bundle.icon {
+        use std::path::PathBuf;
         bundle.windows.icon_path = PathBuf::from(
             icon.iter()
                 .find(|i| i.ends_with(".ico"))
